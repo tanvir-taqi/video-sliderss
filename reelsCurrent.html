@@ -1,0 +1,356 @@
+<!--    
+    Reels vimeo links ===============================
+    https://vimeo.com/1064038061?share=copy
+    https://vimeo.com/1064425550?share=copy
+    https://vimeo.com/1064425617?share=copy
+    https://vimeo.com/1064425786?share=copy
+    https://vimeo.com/1064425834?share=copy
+    https://vimeo.com/1064425893?share=copy
+    https://vimeo.com/1064425738?share=copy
+    https://vimeo.com/1064425949?share=copy
+    https://vimeo.com/1064426070?share=copy
+    https://vimeo.com/1064426108?share=copy
+    https://vimeo.com/1064426198?share=copy
+    https://vimeo.com/1064426244?share=copy
+    https://vimeo.com/1064426310?share=copy
+
+
+    -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vimeo Video reelcarousel</title>
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+    
+          .reelcarousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+          }
+    
+          .reelcarousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+          }
+    
+          .reelcarousel-item {
+            flex: 0 0 33.33%;
+            position: relative;
+            cursor: pointer;
+            height: 500px;
+            padding: 0 10px;
+          }
+    
+          @media (max-width: 900px) {
+            .reelcarousel-item {
+              flex: 0 0 50%;
+            }
+          }
+    
+          @media (max-width: 600px) {
+            .reelcarousel-item {
+              flex: 0 0 100%;
+            }
+          }
+        
+    
+          .reel-video-thumbnail img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+          }
+    
+          .reel-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+          }
+    
+          .reel-play-button::before {
+            content: "▶";
+            font-size: 24px;
+          }
+    
+          /* Modal styles */
+          .reelmodal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.906);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+          }
+    
+          .reelmodal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+          }
+    
+          .reelmodal .reelclose {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="reelcarousel-container">
+          <div class="reelcarousel">
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064038061">
+                <img
+                  src="https://vumbnail.com/1064038061.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425550">
+                <img
+                  src="https://vumbnail.com/1064425550.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425617">
+                <img
+                  src="https://vumbnail.com/1064425617.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425786">
+                <img
+                  src="https://vumbnail.com/1064425786.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425834">
+                <img
+                  src="https://vumbnail.com/1064425834.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425893">
+                <img
+                  src="https://vumbnail.com/1064425893.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425738">
+                <img
+                  src="https://vumbnail.com/1064425738.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064425949">
+                <img
+                  src="https://vumbnail.com/1064425949.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064426070">
+                <img
+                  src="https://vumbnail.com/1064426070.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064426108">
+                <img
+                  src="https://vumbnail.com/1064426108.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064426198">
+                <img
+                  src="https://vumbnail.com/1064426198.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064426244">
+                <img
+                  src="https://vumbnail.com/1064426244.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+            <div class="reelcarousel-item">
+              <div class="reel-video-thumbnail" data-video="1064426310">
+                <img
+                  src="https://vumbnail.com/1064426310.jpg"
+                  alt="Video Thumbnail"
+                />
+                <div class="reel-play-button"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Modal for playing video -->
+        <div class="reelmodal" id="reelsvideoModal">
+          <div class="reelclose" id="reelscloseModal">&times;</div>
+          <iframe
+            id="reelsvideoIframe"
+            src=""
+            allow="autoplay; fullscreen"
+            allowfullscreen
+          ></iframe>
+        </div>
+    
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    
+        <script>
+    
+          // carousel start
+          const reelcarousel = document.querySelector(".reelcarousel");
+    const reelitems = document.querySelectorAll(".reelcarousel-item");
+    const reeltotalItems = reelitems.length;
+    let reelindex = 0;
+    let reelitemWidth = reelitems[0].clientWidth;
+    let reelautoSlide;
+    
+    // Clone first 3 items for infinite loop effect
+    for (let i = 0; i < 3; i++) {
+        let reelclone = reelitems[i].cloneNode(true);
+        reelcarousel.appendChild(reelclone);
+    }
+    
+    function reelsStartAutoSlide() {
+        reelautoSlide = setInterval(() => {
+            reelindex++;
+            reelcarousel.style.transition = "transform 0.5s ease-in-out";
+            reelcarousel.style.transform = `translateX(-${reelindex * reelitemWidth}px)`;
+    
+            setTimeout(() => {
+                if (reelindex >= reeltotalItems) {
+                    reelcarousel.style.transition = "none";
+                    reelindex = 0;
+                    reelcarousel.style.transform = `translateX(0)`;
+                }
+            }, 500);
+        }, 3000);
+    }
+    
+    function reelsStopAutoSlide() {
+        clearInterval(reelautoSlide);
+    }
+    
+    reelcarousel.addEventListener("mouseover", reelsStopAutoSlide);
+    reelcarousel.addEventListener("mouseleave", reelsStartAutoSlide);
+    
+    reelsStartAutoSlide();
+    
+    
+          // Open video in modal when play button is clicked
+          document.querySelectorAll(".reel-play-button").forEach((button) => {
+            button.addEventListener("click", function (event) {
+              event.stopPropagation(); // Prevent unwanted click events
+    
+              let videoId = this.parentElement.getAttribute("data-video");
+              console.log(videoId);
+    
+              let videoUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=0&loop=1`;
+    
+              // Show modal and play video
+              document.getElementById("reelsvideoIframe").src = videoUrl;
+              document.getElementById("reelsvideoModal").style.display = "flex";
+    
+              // Initialize Vimeo player after loading the iframe
+              const iframe = document.getElementById("reelsvideoIframe");
+              const player = new Vimeo.Player(iframe);
+    
+              // Set the video quality to 360p when it's loaded
+              player.on("loaded", function () {
+                player
+                  .setQuality("1080p")
+                  .then(function () {
+                    console.log("Quality set to 108p");
+                  })
+                  .catch(function (error) {
+                    console.error("Error setting quality: ", error);
+                  });
+              });
+            });
+          });
+    
+          // Close modal and stop video
+          document
+            .getElementById("reelscloseModal")
+            .addEventListener("click", function () {
+              document.getElementById("reelsvideoModal").style.display = "none";
+              document.getElementById("reelsvideoIframe").src = ""; // Stop the video
+            });
+    
+          // Close modal when clicking outside the video
+          document
+            .getElementById("reelsvideoModal")
+            .addEventListener("click", function (event) {
+              if (event.target === this) {
+                document.getElementById("reelsvideoModal").style.display = "none";
+                document.getElementById("reelsvideoIframe").src = ""; // Stop the video
+              }
+            });
+        </script>
+      </body>
+    </html>
+    

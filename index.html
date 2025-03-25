@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vimeo Video Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .carousel-item {
+            flex: 0 0 33.33%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .play-button::before {
+            content: "▶";
+            font-size: 24px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: rgba(0, 0, 0, 0.906);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 5px solid #041AB7; /* Brand color */
+            border-radius: 50%;
+            animation: splush 1s linear infinite;
+        }
+
+        .spinner:before {
+            content: "";
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 50px;
+            height: 50px;
+            background: #041AB7;
+            border-radius: 50%;
+           
+            animation: splush 1s linear infinite;
+        }
+
+        @keyframes splush {
+            0% { transform: scale(0.2); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(0.2); }
+        }
+
+      
+    </style>
+</head>
+<body>
+
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="carousel-item">
+            <div class="video-thumbnail" data-video="1064000348">
+                <img src="https://vumbnail.com/1064000348.jpg" alt="Video Thumbnail">
+                <div class="play-button"></div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="video-thumbnail" data-video="1064000348">
+                <img src="https://vumbnail.com/1064000348.jpg" alt="Video Thumbnail">
+                <div class="play-button"></div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="video-thumbnail" data-video="1064000348">
+                <img src="https://vumbnail.com/1064000348.jpg" alt="Video Thumbnail">
+                <div class="play-button"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for playing video -->
+<div class="modal" id="videoModal">
+    <div class="close" id="closeModal">&times;</div>
+    <!-- Spinner displayed until video is fully loaded -->
+    <div class="spinner" id="loadingSpinner"></div>
+    <iframe id="videoIframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script>
+    const carousel = document.querySelector(".carousel");
+    const items = document.querySelectorAll(".carousel-item");
+    const totalItems = items.length;
+    let index = 0;
+    let itemWidth = items[0].clientWidth;
+    let autoSlide;
+
+    // Clone first 3 items for infinite loop effect
+    for (let i = 0; i < 3; i++) {
+        let clone = items[i].cloneNode(true);
+        carousel.appendChild(clone);
+    }
+
+    function startAutoSlide() {
+        autoSlide = setInterval(() => {
+            index++;
+            carousel.style.transition = "transform 0.5s ease-in-out";
+            carousel.style.transform = `translateX(-${index * itemWidth}px)`;
+
+            setTimeout(() => {
+                if (index >= totalItems) {
+                    carousel.style.transition = "none";
+                    index = 0;
+                    carousel.style.transform = `translateX(0)`;
+                }
+            }, 500);
+        }, 2000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    carousel.addEventListener("mouseover", stopAutoSlide);
+    carousel.addEventListener("mouseleave", startAutoSlide);
+
+    startAutoSlide();
+
+    // Open video in modal when play button is clicked
+    document.querySelectorAll(".play-button").forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.stopPropagation(); // Prevent unwanted click events
+
+            let videoId = this.parentElement.getAttribute("data-video");
+            console.log(videoId);
+            
+            let videoUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=0&loop=1`;
+
+            // Show modal and play video
+            document.getElementById("videoIframe").src = videoUrl;
+            document.getElementById("videoModal").style.display = "flex";
+
+            // Show spinner while loading
+            document.getElementById("loadingSpinner").style.display = "block";
+
+            // Initialize Vimeo player after loading the iframe
+            const iframe = document.getElementById("videoIframe");
+            const player = new Vimeo.Player(iframe);
+
+            // When iframe content is fully loaded, hide the spinner
+            player.on('loaded', function() {
+                document.getElementById("loadingSpinner").style.display = "none";
+            });
+
+            // Set the video quality to 360p when it's loaded
+            player.on('loaded', function() {
+                player.setQuality('1080p').then(function() {
+                    console.log('Quality set to 1080p');
+                }).catch(function(error) {
+                    console.error('Error setting quality: ', error);
+                });
+            });
+        });
+    });
+
+    // Close modal and stop video
+    document.getElementById("closeModal").addEventListener("click", function() {
+        document.getElementById("videoModal").style.display = "none";
+        document.getElementById("videoIframe").src = ""; // Stop the video
+    });
+
+    // Close modal when clicking outside the video
+    document.getElementById("videoModal").addEventListener("click", function(event) {
+        if (event.target === this) {
+            document.getElementById("videoModal").style.display = "none";
+            document.getElementById("videoIframe").src = ""; // Stop the video
+        }
+    });
+</script>
+
+</body>
+</html>

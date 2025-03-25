@@ -1,0 +1,257 @@
+<!-- 
+youtube reels links
+
+https://youtube.com/shorts/xSJxgjX7Nps?si=S6mkzd9w6RqiaeK-
+https://youtube.com/shorts/uRNa5MLvLBM?si=aEhut7MQCniLYyfu
+https://youtube.com/shorts/NrC4UrXbBZE?si=_DSmkb9GjxCs5mw6
+https://youtube.com/shorts/3cRRyc59tx4?si=gcbPGDeOkP-gP4dT
+https://youtube.com/shorts/OWYjQlPS2-A?si=OmPEH1YyYRqGEBwv
+https://youtube.com/shorts/bVE8FjZdK2g?si=RBe2ymfBn9RNjukF
+https://youtube.com/shorts/fADkJM9RuO0?si=ESLTiXpatJg2lrqu
+https://youtube.com/shorts/0t0FIPSGRnY?si=HJZTWBlBIWaQuOS_
+https://youtube.com/shorts/ZyPVIjfZA6k?si=7ifGlEwptWlrfaCd
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Shorts Reel Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .reelcarousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reelcarousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .reelcarousel-item {
+            flex: 0 0 33.33%;
+            position: relative;
+            cursor: pointer;
+            height: 500px;
+            padding: 0 10px;
+        }
+
+        @media (max-width: 900px) {
+            .reelcarousel-item {
+                flex: 0 0 50%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .reelcarousel-item {
+                flex: 0 0 100%;
+            }
+        }
+
+        .reel-video-thumbnail img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .reel-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .reel-play-button::before {
+            content: "▶";
+            font-size: 24px;
+        }
+
+        /* Modal styles */
+        .reelmodal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.906);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .reelmodal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .reelmodal .reelclose {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reelcarousel-container">
+        <div class="reelcarousel">
+            
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="xSJxgjX7Nps">
+                    <img src="https://img.youtube.com/vi/xSJxgjX7Nps/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="uRNa5MLvLBM">
+                    <img src="https://img.youtube.com/vi/uRNa5MLvLBM/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="NrC4UrXbBZE">
+                    <img src="https://img.youtube.com/vi/NrC4UrXbBZE/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="3cRRyc59tx4">
+                    <img src="https://img.youtube.com/vi/3cRRyc59tx4/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="OWYjQlPS2-A">
+                    <img src="https://img.youtube.com/vi/OWYjQlPS2-A/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="bVE8FjZdK2g">
+                    <img src="https://img.youtube.com/vi/bVE8FjZdK2g/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="fADkJM9RuO0">
+                    <img src="https://img.youtube.com/vi/fADkJM9RuO0/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="0t0FIPSGRnY">
+                    <img src="https://img.youtube.com/vi/0t0FIPSGRnY/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+            <div class="reelcarousel-item">
+                <div class="reel-video-thumbnail" data-video="ZyPVIjfZA6k">
+                    <img src="https://img.youtube.com/vi/ZyPVIjfZA6k/hqdefault.jpg" alt="Video Thumbnail">
+                    <div class="reel-play-button"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for playing video -->
+    <div class="reelmodal" id="reelsvideoModal">
+        <div class="reelclose" id="reelscloseModal">&times;</div>
+        <iframe id="reelsvideoIframe" src="" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        const reelcarousel = document.querySelector(".reelcarousel");
+        let reelitems = document.querySelectorAll(".reelcarousel-item");
+        let reelindex = 0;
+        let reelitemWidth = reelitems[0].offsetWidth;
+        let reelautoSlide;
+
+        // Clone first 3 items for infinite loop effect
+        for (let i = 0; i < 3; i++) {
+            let reelclone = reelitems[i].cloneNode(true);
+            reelcarousel.appendChild(reelclone);
+        }
+
+        // Update total items after cloning
+        reelitems = document.querySelectorAll(".reelcarousel-item");
+        const reeltotalItems = reelitems.length;
+
+        function reelsStartAutoSlide() {
+            reelautoSlide = setInterval(() => {
+                reelindex++;
+                reelcarousel.style.transition = "transform 0.5s ease-in-out";
+                reelcarousel.style.transform = `translateX(-${reelindex * reelitemWidth}px)`;
+
+                setTimeout(() => {
+                    if (reelindex >= reeltotalItems - 3) {
+                        reelcarousel.style.transition = "none";
+                        reelindex = 0;
+                        reelcarousel.style.transform = `translateX(0)`;
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        function reelsStopAutoSlide() {
+            clearInterval(reelautoSlide);
+        }
+
+        reelcarousel.addEventListener("mouseover", reelsStopAutoSlide);
+        reelcarousel.addEventListener("mouseleave", reelsStartAutoSlide);
+        reelsStartAutoSlide();
+
+        // Open video in modal when play button is clicked
+        document.querySelectorAll(".reel-play-button").forEach((button) => {
+            button.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                let videoId = this.parentElement.getAttribute("data-video");
+                let videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+                // Show modal and play video
+                document.getElementById("reelsvideoIframe").src = videoUrl;
+                document.getElementById("reelsvideoModal").style.display = "flex";
+            });
+        });
+
+        // Close modal and stop video
+        document.getElementById("reelscloseModal").addEventListener("click", function () {
+            document.getElementById("reelsvideoModal").style.display = "none";
+            document.getElementById("reelsvideoIframe").src = "";
+        });
+
+        // Close modal when clicking outside the video
+        document.getElementById("reelsvideoModal").addEventListener("click", function (event) {
+            if (event.target === this) {
+                document.getElementById("reelsvideoModal").style.display = "none";
+                document.getElementById("reelsvideoIframe").src = "";
+            }
+        });
+    </script>
+</body>
+</html>

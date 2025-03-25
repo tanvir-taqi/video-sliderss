@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Custom Video Slider</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #0c0c0c;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .slider-container {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        background: #f8f8f8;
+        padding: 30px 0;
+      }
+      .slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .slide {
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .left {
+        flex: 1;
+        text-align: center;
+      }
+      .left video {
+        width: 90%;
+        max-width: 600px;
+        border-radius: 10px;
+      }
+      .right {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+      }
+      .dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background 0.3s;
+      }
+      .dot.active {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide">
+          <div class="left">
+            <video src="https://brandifies.com/wp-content/uploads/2024/08/Keya.mp4" controls></video>
+          </div>
+          <div class="right">
+            <p><b>Keya Dutta ||</b> CEO, Freedom</p>
+            <p><em><p style="text-align: center;">"Today I want to talk about brandifies. So I am using brandifies for more than 2 years Right now. They helped me with lots of Graphic Designing. For example for making my ads for making my Facebook banner's or any kind of other graphic designing that i needed for my business and my client. We are really pleased with them and their service. I will highly recommend their service."</p></em></p>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="left">
+            <video src="https://brandifies.com/wp-content/uploads/2024/08/Keya.mp4" controls></video>
+          </div>
+          <div class="right">
+            <p><b>Keya Dutta ||</b> CEO, Freedom</p>
+            <p><em><p style="text-align: center;">"Today I want to talk about brandifies. So I am using brandifies for more than 2 years Right now. They helped me with lots of Graphic Designing. For example for making my ads for making my Facebook banner's or any kind of other graphic designing that i needed for my business and my client. We are really pleased with them and their service. I will highly recommend their service."</p></em></p>
+          </div>
+        </div>
+      </div>
+      <div class="dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+      </div>
+    </div>
+    
+    <script>
+      const slider = document.querySelector(".slider");
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      let index = 0;
+      
+      function updateSlider() {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+      }
+      
+      dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+          index = parseInt(dot.getAttribute("data-index"));
+          updateSlider();
+        });
+      });
+    </script>
+  </body>
+</html>
