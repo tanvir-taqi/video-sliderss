@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>testimonial</title>
+    <style>
+      .slider-container {
+        width: 100%;
+        font-family: "Poppins", sans-serif;
+        background: #041ab7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .slider-container .slider {
+        width: 100%;
+        overflow-y: hidden;
+      }
+
+      .slider-container .slide {
+        padding: 20px 10px 10px 10px;
+        display: none;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        animation: slider-entryshow 0.6s ease 1;
+        transform: translateY(100%);
+      }
+
+      .slider-container .show {
+        display: flex;
+        transform: translateY(0%);
+      }
+
+      @keyframes slider-entryshow {
+        0% {
+          transform: translateY(100%);
+        }
+
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      .slider-container .left {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .slider-container video {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+      }
+
+      .slider-container .right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .slider-container .right p {
+        text-align: center;
+      }
+
+      .slider-container .name {
+        font-size: 24px;
+        color: #aefe00;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .slider-container .title,
+      .slider-container .quote {
+        color: white;
+      }
+
+      .slider-container .quote {
+        font-style: italic;
+      }
+
+      .slider-container .dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .slider-container .dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #aefe00;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .slider-container .active {
+        background: white;
+      }
+
+      @media screen and (max-width: 820px) {
+        .slider-container .slide {
+          padding: 20px 10px;
+          flex-direction: column;
+        }
+
+        .slider-container .left,
+        .slider-container .right {
+          width: 100%;
+        }
+
+        .slider-container .right {
+          display: none;
+        }
+
+        .slider-container video {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="slider-container">
+      <div class="slider">
+        <div id="slide1" class="slide show">
+          <div class="left">
+            <video
+              src="https://brandifies.com/wp-content/uploads/2025/04/ReAlejandro.mp4"
+              controls
+            ></video>
+          </div>
+          <div class="right">
+            <div class="contents">
+              <p class="name"><b>Alejandro Ruiz</b></p>
+              <p class="title">CEO, TechNova</p>
+              <p class="quote">
+                "Brandifies is one of the most reliable teams I’ve worked with.
+                Their design, delivery time, and communication are top-notch.
+                Huge shout-out to their support."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="slide2" class="slide">
+          <div class="left">
+            <video
+              src="https://brandifies.com/wp-content/uploads/2025/04/ReIbrahim.mp4"
+              controls
+            ></video>
+          </div>
+          <div class="right">
+            <div class="contents">
+              <p class="name"><b>Ibrahim Khan</b></p>
+              <p class="title">Founder, VisionSpark</p>
+              <p class="quote">
+                "I’ve been using Brandifies for over 2 years. From ad graphics
+                to Facebook banners, they’ve done everything. Super happy with
+                their service and I always recommend them!"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="slide3" class="slide">
+          <div class="left">
+            <video
+              src="https://brandifies.com/wp-content/uploads/2025/04/Re-Keya.mp4"
+              controls
+            ></video>
+          </div>
+          <div class="right">
+            <div class="contents">
+              <p class="name"><b>Keya Dutta</b></p>
+              <p class="title">CEO, Freedom</p>
+              <p class="quote">
+                "Today I want to talk about Brandifies. So I am using Brandifies
+                for more than 2 years now. They helped me with lots of graphic
+                designing — ad creatives, Facebook banners, and everything I
+                needed for my business and clients. We are really pleased with
+                their service. I highly recommend them!"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="dots">
+        <div id="dot1" class="dot active"></div>
+        <div id="dot2" class="dot"></div>
+        <div id="dot3" class="dot"></div>
+      </div>
+    </section>
+
+    <!-- scripts -->
+    <script>
+      const dots = document.querySelectorAll(".dot");
+      const slides = document.querySelectorAll(".slide");
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          dots.forEach((d) => d.classList.remove("active"));
+          slides.forEach((s) => s.classList.remove("show"));
+          dot.classList.add("active");
+          slides[index].classList.add("show");
+        });
+      });
+    </script>
+  </body>
+</html>
